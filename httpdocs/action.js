@@ -224,7 +224,7 @@ var editToolActions = [
 			'X': [ 88 ]
 		},
 		run: function (e) {
-			project.setMode( 'text' );
+			project.setTool( new TextlabelTool() );
 			return true;
 		}
 	}),
