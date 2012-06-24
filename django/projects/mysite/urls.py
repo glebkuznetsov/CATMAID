@@ -1,9 +1,9 @@
-from django.conf.urls.defaults import patterns
+from django.conf.urls.defaults import patterns, include, url
 from django.conf import settings
 
 # Uncomment the next two lines to enable the admin:
-# from django.contrib import admin
-# admin.autodiscover()
+from django.contrib import admin
+admin.autodiscover()
 
 # A regular expression matiching floating point and integer numbers
 num = r'[-+]?[0-9]*\.?[0-9]+'
@@ -63,6 +63,12 @@ urlpatterns += patterns('',
     (r'^(?P<project_id>\d+)/stack/(?P<stack_ids>%s)/crop/(?P<x_min>%s),(?P<x_max>%s)/(?P<y_min>%s),(?P<y_max>%s)/(?P<z_min>%s),(?P<z_max>%s)/(?P<zoom_level>\d+)/$' % (intlist, num, num, num, num, num, num), 'vncbrowser.views.crop' ),
     (r'^crop/download/(?P<file_path>.*)/$', 'vncbrowser.views.download_crop' )
     )
+
+urlpatterns += patterns('',
+    # Uncomment the next line to enable the admin:
+    url(r'^admin/', include(admin.site.urls))
+    )
+
 
 if settings.DEBUG:
     urlpatterns += patterns('',
